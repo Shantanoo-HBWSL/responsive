@@ -27,6 +27,7 @@ $responsive_blog_layout_columns = array( 'blog-2-col', 'blog-3-col', 'blog-4-col
 
 $responsive_template_directory = get_template_directory();
 require $responsive_template_directory . '/core/includes/functions.php';
+require $responsive_template_directory . '/admin/starter-template/responsive-starter-content.php';
 require $responsive_template_directory . '/core/includes/functions-update.php';
 require $responsive_template_directory . '/core/includes/functions-sidebar.php';
 require $responsive_template_directory . '/core/includes/functions-install.php';
@@ -55,6 +56,11 @@ require $responsive_template_directory . '/core/includes/modules/related-posts/c
 require $responsive_template_directory . '/core/includes/functions-deprecated.php';
 // Custom page walker.
 require $responsive_template_directory . '/core/includes/classes/class-responsive-walker-page.php';
+if (!function_exists('media_handle_sideload')) {
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+}
+
 
 if ( is_admin() ) {
 	/**
@@ -128,7 +134,7 @@ function responsive_setup_content_width() {
 			if ( 'no' !== get_theme_mod( 'responsive_blog_sidebar_position', 'right' ) ) {
 				$blog_content_width = esc_html( get_theme_mod( 'responsive_blog_content_width', Responsive\Core\get_responsive_customizer_defaults( 'blog_content_width' ) ) );
 
-				$content_width = ( $blog_content_width / 100 ) * $container_max_width;
+				$content_width = ( (int)$blog_content_width / 100 ) * $container_max_width;
 			} else {
 				$content_width = $container_max_width;
 			}
@@ -177,6 +183,17 @@ add_action( 'wp', 'responsive_setup_content_width' );
  * Responsive_free_setup
  */
 function responsive_free_setup() {
+	if(get_option( 'fresh_site' ) == 1) {
+		error_log("Inside the Fresh Built If Statement");
+		$responsive_hide_title = set_theme_mod('responsive_hide_title', true);
+		error_log("responsive_hide_title: ".$responsive_hide_title);
+		// $responsive_disable_menu = set_theme_mod('responsive_disable_menu', false);
+		// error_log("responsive_disable_menu: ".$responsive_disable_menu);
+		// set_theme_mod('responsive_footer_bar_top_padding', 0);
+		//TODO
+		$responsive_starter_content = new Responsive_Starter_Content();
+		add_theme_support( 'starter-content', $responsive_starter_content->get() );
+	}
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'sensei' );
 
@@ -259,8 +276,84 @@ add_action( 'after_setup_theme', 'responsive_free_setup' );
 
 $responsive_options = Responsive\Core\responsive_get_options();
 
+// function create_and_assign_primary_menu() {
+//     // Check if the menu already exists
+//     if (has_nav_menu('header-menu')) {
+//         return; // If the menu exists, no need to create it again
+//     }
+
+// 	// Define the menu items
+// 	$nav_items_header = array(
+// 		'services'    => array(
+// 			'title' => __('Services', 'responsive'),
+// 			'type'  => 'custom',
+// 			'url'   => '{{' . SERVICES_SLUG . '}}',
+// 		),
+// 		'about' => array(
+// 			'title' => __('About', 'responsive'),
+// 			'type'  => 'custom',
+// 			'url'   => '{{' . ABOUT_SLUG . '}}',
+// 		),
+// 		'testimonials'  => array(
+// 			'title' => __('testimonials', 'responsive'),
+// 			'type'  => 'custom',
+// 			'url'   => '{{' . TESTIMONIALS_SLUG . '}}',
+// 		),
+// 		'whyus'      => array(
+// 			'title' => __('Why Us', 'responsive'),
+// 			'type'  => 'custom',
+// 			'url'   => '{{' . WHY_US_SLUG . '}}',
+// 		),
+// 		'contact'  => array(
+// 			'title' => __('Contact', 'responsive'),
+// 			'type'  => 'custom',
+// 			'url'   => '{{' . CONTACT_SLUG . '}}',
+// 		),
+// 	);
+
+//     // Create the header menu
+//     $menu_name = 'Primary Menu';
+//     $menu_exists = wp_get_nav_menu_object($menu_name);
+
+//     if (!$menu_exists) {
+//         // Create a new menu
+//         $menu_id = wp_create_nav_menu($menu_name);
+
+//         // Add menu items
+//         foreach ($nav_items_header as $item_key => $item_data) {
+// 			// Otherwise, add the regular menu items
+// 			$args = array(
+// 				'menu-item-title'  => $item_data['title'],
+// 				'menu-item-url'    => $item_data['url'],
+// 				'menu-item-type'   => $item_data['type'],
+// 				'menu-item-status' => 'publish',
+// 			);
+// 			// Add the item to the menu
+// 			wp_update_nav_menu_item($menu_id, 0, $args);
+//         }
+
+//         // Remove any previously assigned menu from the 'header-menu' location (if any)
+//         $locations = get_theme_mod('nav_menu_locations');
+//         if (isset($locations['header-menu'])) {
+//             unset($locations['header-menu']); // Remove previous assignment
+//             set_theme_mod('nav_menu_locations', $locations); // Update theme_mod
+//         }
+
+//         // Set the menu to the 'header-menu' location
+//         set_theme_mod('nav_menu_locations', array(
+//             'header-menu' => $menu_id
+//         ));
+//     }
+// }
+
+// // Hook the function into theme activation
+// add_action('after_setup_theme', 'create_and_assign_primary_menu');
+
+
 /**
  * Edit Customize Register
+ 
+ 
  *
  * @param array $wp_customize WP Customize.
  */

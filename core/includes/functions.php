@@ -1051,7 +1051,7 @@ function defaults() {
 			'blog_entry_meta_alignment'           => 'left',
 			// Padding.
 			'box_padding'                         => 30,
-			'logo_padding'                        => 28,
+			'logo_padding'                        => 0, // Default Value for Starter Template - Before 28
 			// Colors.
 			'background_color'                    => '#eaeaea',
 			'scroll_to_top_icon'                  => '#ffffff',
@@ -1063,11 +1063,11 @@ function defaults() {
 			'content_header_heading'              => '#333333',
 			'content_header_description'          => '#999999',
 			'breadcrumb'                          => '#1e73be',
-			'footer_background'                   => '#333333',
-			'footer_text'                         => '#ffffff',
-			'footer_links'                        => '#eaeaea',
-			'footer_links_hover'                  => '#ffffff',
-			'header_background'                   => '#ffffff',
+			'footer_background'                   => '#ffffff', // Default Value for Starter Template - Before #333333
+			'footer_text'                         => '#747474', // Default Value for Starter Template - Before #ffffff
+			'footer_links'                        => '#3A1D74', // Default Value for Starter Template - Before #eaeaea
+			'footer_links_hover'                  => '#747474',	// Default Value for Starter Template - Before #ffffff
+			'header_background'                   => '#2D2C52', // Default Value for Starter Template - Before #ffffff
 			'header_border'                       => '#eaeaea',
 			'header_site_title'                   => '#333333',
 			'header_site_title_hover'             => '#10659C',
@@ -1080,10 +1080,10 @@ function defaults() {
 
 			// hamburger menu padding
 			'hamburger_menu_padding'              => 15,
-			'header_menu_background'              => '#ffffff',
+			'header_menu_background'              => '#2D2C52', // Default Value for Starter Template - Before #ffffff
 			'header_menu_border'                  => '#eaeaea',
 			'header_active_menu_background'       => '#ffffff',
-			'header_menu_link'                    => '#333333',
+			'header_menu_link'                    => '#ffffff', // Default Value for Starter Template - Before #333333
 			'header_menu_link_hover'              => '#10659C',
 			'header_sub_menu_background'          => '#ffffff',
 			'header_sub_menu_link'                => '#333333',
@@ -1106,12 +1106,12 @@ function defaults() {
 			'box_background'                      => '#ffffff',
 			'alt_background'                      => '#eaeaea',
 			'body_text'                           => '#333333',
-			'h1_text'                             => '#333333',
-			'h2_text'                             => '#333333',
-			'h3_text'                             => '#333333',
-			'h4_text'                             => '#333333',
-			'h5_text'                             => '#333333',
-			'h6_text'                             => '#333333',
+			'h1_text'                             => '#ffffff', // Default Value for Starter Template - Before #333333
+			'h2_text'                             => '#200c47', // Default Value for Starter Template - Before #333333
+			'h3_text'                             => '#200c47', // Default Value for Starter Template - Before #333333
+			'h4_text'                             => '#333333', 
+			'h5_text'                             => '#333333', 
+			'h6_text'                             => '#333333', 
 			'meta_text'                           => '#999999',
 			'link'                                => '#0066CC',
 			'link_hover'                          => '#10659C',

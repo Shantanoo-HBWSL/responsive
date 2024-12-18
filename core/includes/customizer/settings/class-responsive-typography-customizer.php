@@ -84,6 +84,7 @@ if ( ! class_exists( 'Responsive_Typography_Customizer' ) ) :
 					'defaults' => array(
 						'line-height'    => '1.25',
 						'text-transform' => 'inherit',
+						'font-family'	 => 'Libre Franklin',
 					),
 				),
 
@@ -94,9 +95,10 @@ if ( ! class_exists( 'Responsive_Typography_Customizer' ) ) :
 					'priority' => 7,
 					'exclude'  => array( 'font-color' ),
 					'defaults' => array(
-						'font-size'      => '33px',
+						'font-size'		 => '64px',
 						'line-height'    => '1.25',
 						'text-transform' => 'inherit',
+						'font-family'	 => 'Libre Franklin',
 					),
 				),
 				'heading_h2'                 => array(
@@ -106,9 +108,10 @@ if ( ! class_exists( 'Responsive_Typography_Customizer' ) ) :
 					'priority' => 9,
 					'exclude'  => array( 'font-color' ),
 					'defaults' => array(
-						'font-size'      => '26px',
+						'font-size'      => '52px',
 						'line-height'    => '1.25',
 						'text-transform' => 'inherit',
+						'font-family'	 => 'Libre Franklin',
 					),
 				),
 				'heading_h3'                 => array(
@@ -118,9 +121,10 @@ if ( ! class_exists( 'Responsive_Typography_Customizer' ) ) :
 					'priority' => 11,
 					'exclude'  => array( 'font-color' ),
 					'defaults' => array(
-						'font-size'      => '20px',
+						'font-size'      => '26px',
 						'line-height'    => '1.25',
 						'text-transform' => 'inherit',
+						'font-family'	 => 'Libre Franklin',
 					),
 				),
 				'heading_h4'                 => array(
@@ -133,6 +137,7 @@ if ( ! class_exists( 'Responsive_Typography_Customizer' ) ) :
 						'font-size'      => '16px',
 						'line-height'    => '1.25',
 						'text-transform' => 'inherit',
+						'font-family'	 => 'Libre Franklin',
 					),
 				),
 				'heading_h5'                 => array(
@@ -145,6 +150,7 @@ if ( ! class_exists( 'Responsive_Typography_Customizer' ) ) :
 						'font-size'      => '13px',
 						'line-height'    => '1.25',
 						'text-transform' => 'inherit',
+						'font-family'	 => 'Libre Franklin',
 					),
 				),
 				'heading_h6'                 => array(
@@ -156,6 +162,7 @@ if ( ! class_exists( 'Responsive_Typography_Customizer' ) ) :
 					'defaults' => array(
 						'font-size'   => '13px',
 						'line-height' => '1.25',
+						'font-family'	 => 'Libre Franklin',
 					),
 				),
 				'meta'                       => array(
@@ -503,7 +510,7 @@ if ( ! class_exists( 'Responsive_Typography_Customizer' ) ) :
 									'priority'        => $priority,
 									'type'            => 'responsive-typography',
 									'active_callback' => $active_callback,
-									'resp_inherit'    => __( 'Default', 'responsive' ),
+									'resp_inherit'    => __( 'Libre Franklin', 'responsive' ),
 									'connect'         => $element . '_typography[font-weight]',
 								)
 							)
