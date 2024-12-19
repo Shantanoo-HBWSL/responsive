@@ -1089,7 +1089,7 @@ function defaults() {
 			'header_sub_menu_link'                => '#333333',
 			'header_sub_menu_link_hover'          => '#10659C',
 			'header_menu_toggle_background'       => 'transparent',
-			'header_menu_toggle'                  => '#333333',
+			'header_menu_toggle'                  => '#ffffff', // Default Value for Starter Template - Before #333333
 			'hamburger_secondary_menu_padding'    => 15,
 			'header_secondary_menu_background'    => '#ffffff',
 			'header_secondary_menu_border'        => '#eaeaea',

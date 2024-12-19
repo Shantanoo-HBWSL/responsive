@@ -64,7 +64,7 @@ $responsive_default_home_content = '
       <!-- /wp:heading -->
 
       <!-- wp:paragraph -->
-      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:28px;text-align:center;color:#1F1F1F">Creating and maintaining websites, combining design, coding, and functionality for online experiences.</p>
+      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:28px;text-align:center">Creating and maintaining websites, combining design, coding, and functionality for online experiences.</p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->
@@ -82,7 +82,7 @@ $responsive_default_home_content = '
       <!-- /wp:heading -->
 
       <!-- wp:paragraph -->
-      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:28px;text-align:center;color:#1F1F1F">Building and designing WordPress websites, combining creativity, coding, and functionality for online success.</p>
+      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:28px;text-align:center">Building and designing WordPress websites, combining creativity, coding, and functionality for online success.</p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->
@@ -100,7 +100,7 @@ $responsive_default_home_content = '
       <!-- /wp:heading -->
 
       <!-- wp:paragraph -->
-      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:28px;text-align:center;color:#1F1F1F">Promoting businesses with strategies to boost visibility, engagement, and drive successful outcomes.</p>
+      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:28px;text-align:center">Promoting businesses with strategies to boost visibility, engagement, and drive successful outcomes.</p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->
@@ -121,11 +121,11 @@ $responsive_default_home_content = '
         <!-- /wp:heading -->
 
         <!-- wp:paragraph -->
-        <p style="font-family:Libre Franklin;font-size:18px;font-weight:300;line-height:30px;text-align:left;color: #1F1F1F;">At the heart of innovation lies the ability to create digital experiences that inspire and connect. With every website crafted, we aim to shape the future of online interaction—combining cutting-edge technology, thoughtful design, and user-focused functionality.</p>
+        <p style="font-family:Libre Franklin;font-size:18px;font-weight:300;line-height:30px;text-align:left;">At the heart of innovation lies the ability to create digital experiences that inspire and connect. With every website crafted, we aim to shape the future of online interaction—combining cutting-edge technology, thoughtful design, and user-focused functionality.</p>
         <!-- /wp:paragraph -->
 
         <!-- wp:paragraph -->
-        <p style="font-family:Libre Franklin;font-size:18px;font-weight:300;line-height:30px;text-align:left;color: #1F1F1F;">Every website we build is a step toward a more connected and dynamic future. By blending innovation, design, and functionality, we create digital spaces that empower businesses and individuals to thrive.</p>
+        <p style="font-family:Libre Franklin;font-size:18px;font-weight:300;line-height:30px;text-align:left;">Every website we build is a step toward a more connected and dynamic future. By blending innovation, design, and functionality, we create digital spaces that empower businesses and individuals to thrive.</p>
         <!-- /wp:paragraph -->
       </div>
       <!-- /wp:group -->
@@ -155,7 +155,7 @@ $responsive_default_home_content = '
       <!-- /wp:heading -->
 
       <!-- wp:paragraph -->
-      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:26px;text-align:center;color: #1F1F1F;">Driven by enthusiasm and dedication to deliver excellence in every endeavor.</p>
+      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:26px;text-align:center;">Driven by enthusiasm and dedication to deliver excellence in every endeavor.</p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->
@@ -173,7 +173,7 @@ $responsive_default_home_content = '
       <!-- /wp:heading -->
 
       <!-- wp:paragraph -->
-      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:26px;text-align:center;color: #1F1F1F;">Committed to delivering quality, reliability, and expertise in every project undertaken.</p>
+      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:26px;text-align:center;">Committed to delivering quality, reliability, and expertise in every project undertaken.</p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->
@@ -191,7 +191,7 @@ $responsive_default_home_content = '
       <!-- /wp:heading -->
 
       <!-- wp:paragraph -->
-      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:26px;text-align:center;color: #1F1F1F;">Providing reliable assistance and solutions to ensure your success at every step.</p>
+      <p style="font-family:Libre Franklin;font-size:16px;font-weight:300;line-height:26px;text-align:center;">Providing reliable assistance and solutions to ensure your success at every step.</p>
       <!-- /wp:paragraph -->
     </div>
     <!-- /wp:column -->
@@ -204,11 +204,11 @@ $responsive_default_home_content = '
 <div class="wp-block-group alignfull" id="testimonials" style="padding-top:60px;padding-bottom:60px;background-color:#ffffff;">
   <div style="max-width:1024px;width:100%;margin:auto;">
   	<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"24px","lineHeight":"47px"}}} -->
-  	<p class="has-text-align-center" style="font-size:24px;line-height:47px;font-weight:300;text-align:center;color: #1F1F1F;">“I use this theme pretty often, as it gives me what I need and a lot more. Super-flexible for many purposes and not least, it is responsive. 🙂”</p>
+  	<p class="has-text-align-center" style="font-size:24px;line-height:47px;font-weight:300;text-align:center;">“I use this theme pretty often, as it gives me what I need and a lot more. Super-flexible for many purposes and not least, it is responsive. 🙂”</p>
   	<!-- /wp:paragraph -->
 	
   	<!-- wp:paragraph {"align":"center"} -->
-  	<p class="has-text-align-center" style="font-size:24px;line-height:47px;font-weight:600;text-align:center;color: #000000;"><strong>-Responsive Theme User</strong></p>
+  	<p class="has-text-align-center" style="font-size:24px;line-height:47px;font-weight:600;text-align:center;"><strong>-Responsive Theme User</strong></p>
   	<!-- /wp:paragraph -->
   </div>
 </div>

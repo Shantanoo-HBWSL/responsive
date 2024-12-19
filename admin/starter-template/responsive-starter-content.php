@@ -248,13 +248,13 @@ class Responsive_Starter_Content {
 			),
 			'nav_menus'   => array(
 				'header-menu'     => array(
-					'name'  => esc_html__( 'Primary', 'responsive' ),
+					'name'  => esc_html__( 'Responsive Starter Template Primary', 'responsive' ),
 					'items' => $nav_items_header,
 				),
-				'mobile_menu' => array(
-					'name'  => esc_html__( 'Primary', 'responsive' ),
-					'items' => $nav_items_header,
-				),
+				// 'mobile_menu' => array(
+				// 	'name'  => esc_html__( 'Primary', 'responsive' ),
+				// 	'items' => $nav_items_header,
+				// ),
 			),
 			'theme_mods'  => array(
 				'custom_logo' => '{{logo}}',
