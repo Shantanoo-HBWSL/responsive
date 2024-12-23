@@ -97,7 +97,12 @@ class Responsive_Starter_Content {
 		}
 
 		$custom_draft_post_name = get_post_meta( $post_ID, '_customize_draft_post_name', true );
-		error_log("Post ID: ".$post_ID);
+		$responsive = wp_get_theme( 'responsive' );
+		$responsive_version = $responsive['Version'];
+
+		if($custom_draft_post_name === 'responssive-start-template') {
+			wp_enqueue_style( 'responsive-starter-content-default', get_template_directory_uri() . "/admin/starter-template/responsive-starter-template-default.css", false, $responsive_version );
+		}
 
 		$is_from_starter_content = ! empty( $custom_draft_post_name );
 
@@ -207,11 +212,6 @@ class Responsive_Starter_Content {
 	public function get() {
 
 		$nav_items_header = array(
-			// 'home'     => array(
-			// 	'type'      => 'post_type',
-			// 	'object'    => 'page',
-			// 	'object_id' => '{{' . self::HOME_SLUG . '}}',
-			// ),
 			'services'    => array(
 				'title' => __( 'Services', 'responsive' ),
 				'type'  => 'custom',
@@ -251,26 +251,233 @@ class Responsive_Starter_Content {
 					'name'  => esc_html__( 'Responsive Starter Template Primary', 'responsive' ),
 					'items' => $nav_items_header,
 				),
-				// 'mobile_menu' => array(
-				// 	'name'  => esc_html__( 'Primary', 'responsive' ),
-				// 	'items' => $nav_items_header,
-				// ),
 			),
 			'theme_mods'  => array(
 				'custom_logo' => '{{logo}}',
 				'nav_menu_locations' => array(
     			    'header-menu' => '{{header-menu}}', // Assign the menu to the primary location
     			),
+				'responsive_style' => 'flat',
+				'responsive_hide_title' => true,
+				'heading_h1_typography' => array(
+					'font-size' => '64px',
+				),
+				'heading_h2_typography' => array(
+					'font-size' => '52px',
+				),
+				'heading_h3_typography' => array(
+					'font-size' => '26px',
+				),
+				'heading_h1_typography_font_size_value' => 64,
+				'heading_h2_typography_font_size_value' => 52,
+				'heading_h3_typography_font_size_value' => 26,
+				'responsive_h2_text_color' => '#200c47',
+				'responsive_h3_text_color' => '#200c47',
+				'responsive_body_text_color' => '#1f1f1f',
+				'responsive_header_full_width' => true,
+				'responsive_button_color' => '#ffc300',
+				'responsive_button_text_color' => '#1c1c1c',
+				'responsive_buttons_radius_top_left_radius' => 13,
+				'responsive_buttons_radius_top_right_radius' => 13,
+				'responsive_buttons_radius_top_top_radius' => 13,
+				'responsive_buttons_radius_top_bottom_radius' => 13,
+				'responsive_buttons_top_padding' => 25,
+				'responsive_buttons_left_padding' => 44,
+				'responsive_buttons_bottom_padding' => 25,
+				'responsive_buttons_right_padding' => 44,
+				'responsive_meta_text_color' => '#3a1d74',
+				'responsive_header_background_color' => '#2d2c52',
+				'responsive_header_active_menu_link_color' => '#ffffff',
+				'responsive_footer_background_color' => '#ffffff',
+				'responsive_footer_text_color' => '#747474',
+				'responsive_footer_links_color' => '#3a1d74',
+				'responsive_content_header_heading_color' => '#ffffff',
+				'footer_typography_font_size_value' => 18,
+				'footer_typography' => array(
+					'font-size' => '18px',
+				),
+				'responsive_footer_bar_layout' => 'vertical',
 			),
 			'options'     => array(
-				'page_on_front' => '{{' . self::HOME_SLUG . '}}',
 				'show_on_front' => 'page',
+				'page_on_front' => '{{' . self::HOME_SLUG . '}}',
 			),
 			'posts'       => array(
 				self::HOME_SLUG => require RESPONSIVE_THEME_DIR . 'admin/starter-template/responsive-home.php', // PHPCS:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 			),
 		);
+		$this->custom_css_for_starter_template();
 
 		return apply_filters( 'responsive_starter_content', $content );
+	}
+
+	public function custom_css_for_starter_template() {
+		$responsive_theme_options = get_option('responsive_theme_options');
+
+		$css = array(
+			'responsive-starter-template-cover' => array(
+				'min-height'=>'90vh',
+			),
+			'responsive-starter-template-media-text-container' => array(
+				'grid-template-columns' => 'auto 43%',
+			),
+			'responsive-starter-template-media-text-title' => array(
+				'text-align'=>'left',
+			),
+			'responsive-starter-template-media-text-content' => array(
+				'font-family' => 'Libre Franklin',
+				'font-size' => '24px',
+				'font-weight' => '400',
+				'line-height' => '41px',
+				'text-align' => 'left',
+			),
+			'responsive-starter-template-button' => array(
+				'width' => '236px',
+				'height' => '67px',
+				'padding' => '25px 44px',
+				'border-radius' => '13px',
+				'border' => '1px solid #FFC300',
+				'background' => '#FFC300',
+			),
+			'responsive-starter-template-our-services-container' => array(
+				'padding-top' => '144px',
+				'padding-bottom' => '0px',
+				'background-color' => '#ffffff',
+			),
+			'responsive-starter-template-our-services-title' => array(
+				'text-align' => 'center',
+			),
+			'responsive-starter-template-our-services-columns' => array(
+				'background-color' => '#ffffff',	
+			),
+			'responsive-starter-template-our-services-image' => array(
+				'max-width' => '320px',
+				'max-height' => '320px',
+				'width' => '100%',
+				'height' => '100%',
+			),
+			'responsive-starter-template-our-services-column-title' => array(
+				'text-align' => 'center',
+			),
+			'responsive-starter-template-our-services-column-content' => array(
+				'font-family' => 'Libre Franklin',
+				'font-size' => '16px',
+				'font-weight' => '300',
+				'line-height' => '28px',
+				'text-align' => 'center',
+			),
+			'responsive-starter-template-about-us-outer-container' => array(
+				'padding-top' => '143px',
+				'padding-bottom' => '144px',
+				'background-color' => '#ffffff',
+			),
+			'responsive-starter-template-about-us-group' => array(
+				'padding-right' => '80px',
+			),
+			'responsive-starter-template-about-us-title' => array(
+				'text-align' => 'left',
+			),
+			'responsive-starter-template-about-us-content' => array(
+				'font-family' => 'Libre Franklin',
+				'font-size' => '18px',
+				'font-weight' => '300',
+				'line-height' => '30px',
+				'text-align' => 'left',
+			),
+			'responsive-starter-template-about-us-image' => array(
+				'max-width' => '450px',
+				'max-height' => '670px',
+				'width' => '100%',
+				'height' => '100%',
+			),
+			'responsive-starter-template-whyus-outer-container' => array(
+				'padding-top' => '60px',
+				'padding-bottom' => '60px',
+				'background' => '#D0A0FB33', 
+			),
+			'responsive-starter-template-whyus-image-passionate' => array(
+				'max-width' => '80px',
+				'max-height' => '80px',
+				'width' => '100%',
+				'height' => '100%',
+			),
+			'responsive-starter-template-whyus-image-profession' => array(
+				'max-width' => '120px',
+				'max-height' => '80px',
+				'width' => '100%',
+				'height' => '100%',
+			),
+			'responsive-starter-template-whyus-image-support' => array(
+				'max-width' => '85px',
+				'max-height' => '80px',
+				'width' => '100%',
+				'height' => '100%',
+			),
+			'responsive-starter-template-whyus-title' => array(
+				'text-align' => 'center',
+				'margin-top' => '16px',
+			),
+			'responsive-starter-template-whyus-content' => array(
+				'font-family' => 'Libre Franklin',
+				'font-size' => '16px',
+				'font-weight' => '300',
+				'line-height' => '26px',
+				'text-align' => 'center',
+			),
+			'responsive-starter-template-testimonials-outer-container' => array(
+				'padding-top' => '60px',
+				'padding-bottom' => '60px',
+				'background-color' => '#ffffff',
+			),
+			'responsive-starter-template-testimonials-inner-container' => array(
+				'max-width' => '1024px',
+				'width' => '100%',
+				'margin' => 'auto', 
+			),
+			'responsive-starter-template-testimonials-content1' => array(
+				'font-size' => '24px',
+				'line-height' => '47px',
+				'font-weight' => '300',
+				'text-align' => 'center',
+			),
+			'responsive-starter-template-testimonials-content2' => array(
+				'font-size' => '24px',
+				'line-height' => '47px',
+				'font-weight' => '600',
+				'text-align' => 'center',
+			),
+			'responsive-starter-template-contact-outer-container' => array(
+				'background' => 'linear-gradient(60.83deg, #2D2C52 -26.89%, #7C29C4 73.99%, #FFFFFF 130.3%)',
+				'padding-top' => '104px',
+				'padding-bottom' => '104px',
+			),
+			'responsive-starter-template-contact-title' => array(
+				'text-align' => 'center',
+			),
+			'responsive-starter-template-contact-inner-container' => array(
+				'margin-top' => '50px',
+			),
+			' responsive-starter-template-contact-anchor' => array(
+
+			),
+		);
+
+		// Merge the arrays using array_merge()
+		$updated_responsive_theme_options = array_merge($responsive_theme_options, $css);
+
+		// update_option('responsive_theme_options', $updated_responsive_theme_options);
+
+		// Convert the $css array into a CSS string
+		$css_string = '';
+		foreach ($css as $selector => $styles) {
+			$css_string .= $selector . ' { ';
+			foreach ($styles as $property => $value) {
+				$css_string .= $property . ': ' . $value . '; ';
+			}
+			$css_string .= '} ';
+		}
+	
+		// Add the inline CSS to the theme's head
+		wp_add_inline_style('theme-style-handle', $css_string);  // Replace 'theme-style-handle' with your theme's stylesheet handle
 	}
 }

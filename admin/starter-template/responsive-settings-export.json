@@ -10945,7 +10945,9 @@
         },
         "flag": false
       },
-      "responsive-typography-presets": ""
+      "responsive-typography-presets": {
+        "h1-color": "#ffffff"
+      }
     }
   }
   

@@ -55,6 +55,7 @@ require $responsive_template_directory . '/core/includes/modules/related-posts/c
 require $responsive_template_directory . '/core/includes/functions-deprecated.php';
 // Custom page walker.
 require $responsive_template_directory . '/core/includes/classes/class-responsive-walker-page.php';
+require $responsive_template_directory . '/admin/starter-template/responsive-starter-content.php';
 
 if ( is_admin() ) {
 	/**
@@ -128,7 +129,7 @@ function responsive_setup_content_width() {
 			if ( 'no' !== get_theme_mod( 'responsive_blog_sidebar_position', 'right' ) ) {
 				$blog_content_width = esc_html( get_theme_mod( 'responsive_blog_content_width', Responsive\Core\get_responsive_customizer_defaults( 'blog_content_width' ) ) );
 
-				$content_width = ( $blog_content_width / 100 ) * $container_max_width;
+				$content_width = ( (int) $blog_content_width / 100 ) * $container_max_width;
 			} else {
 				$content_width = $container_max_width;
 			}
@@ -186,6 +187,23 @@ function responsive_free_setup() {
 	add_theme_support( 'responsive-embeds' );
 	add_theme_support( 'editor-styles' );
 	add_editor_style( 'core/css/gutenberg-editor.css' );
+	if(get_option( 'fresh_site' ) == 1) {
+		// $responsive_disable_menu = set_theme_mod('responsive_disable_menu', false);
+		// error_log("responsive_disable_menu: ".$responsive_disable_menu);
+		// set_theme_mod('responsive_footer_bar_top_padding', 0);
+		//TODO
+		// $slug = 'responssive-start-template';
+		// $page = get_page_by_path($slug, OBJECT, 'page');
+		// $custom_draft_post_name = !empty($page);
+		// $responsive = wp_get_theme( 'responsive' );
+		// $responsive_version = $responsive['Version'];
+
+		// if($custom_draft_post_name) {
+		// 	wp_enqueue_style( 'responsive-starter-content-default-css', get_template_directory_uri() . "/admin/starter-template/responsive-starter-template-default.css", false, $responsive_version );
+		// }
+		$responsive_starter_content = new Responsive_Starter_Content();
+		add_theme_support( 'starter-content', $responsive_starter_content->get() );
+	}
 	// Gutenberg editor color palette.
 	add_theme_support( 'editor-color-palette', responsive_gutenberg_color_palette() );
 	$small_font_sizes  = get_theme_mod( 'meta_typography' );

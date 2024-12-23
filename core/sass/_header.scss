@@ -28,6 +28,7 @@
 }
 
 .site-branding {
+    flex: 1;
     @extend .col-xs-12;
 
     @media( min-width: map-get($screens, xxxl) ) {
@@ -75,6 +76,7 @@
 }
 
 .main-navigation {
+    flex: 1;
     @extend .col-xs-12;
     @include clear-floats();
 

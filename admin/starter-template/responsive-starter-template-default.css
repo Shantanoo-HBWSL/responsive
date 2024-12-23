@@ -1,0 +1,174 @@
+body {
+    background-color: rebeccapurple;
+}
+
+.responsive-starter-template-cover {
+    min-height: 90vh !important; 
+}
+
+.responsive-starter-template-media-text-container {
+  grid-template-columns: auto 43% !important;
+}
+
+.responsive-starter-template-media-text-title {
+  text-align: left !important;
+}
+
+.responsive-starter-template-media-text-content {
+  font-family: 'Libre Franklin' !important; 
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 41px !important;
+  text-align: left !important;
+}
+
+.responsive-starter-template-button {
+  width: 236px !important;
+  height: 67px !important;
+  padding: 25px 44px !important;
+  border-radius: 13px !important;
+  border: 1px solid #FFC300 !important;
+  background: #FFC300 !important;
+}
+
+.responsive-starter-template-our-services-container {
+  padding-top: 144px !important;
+  padding-bottom: 0px !important;
+  background-color: #ffffff !important;
+}
+
+.responsive-starter-template-our-services-title {
+  text-align: center !important;
+}
+
+.responsive-starter-template-our-services-columns {
+  background-color: #ffffff !important;
+}
+
+.responsive-starter-template-our-services-image {
+  max-width: 320px !important;
+  max-height: 320px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.responsive-starter-template-our-services-column-title {
+  text-align: center !important;
+}
+
+.responsive-starter-template-our-services-column-content {
+  font-family: 'Libre Franklin' !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  line-height: 28px !important;
+  text-align: center !important;
+}
+
+.responsive-starter-template-about-us-outer-container {
+  padding-top: 143px !important;
+  padding-bottom: 144px !important;
+  background-color: #ffffff !important;
+}
+
+.responsive-starter-template-about-us-group {
+  padding-right: 80px !important;
+}
+
+.responsive-starter-template-about-us-title {
+  text-align: left !important;
+}
+
+.responsive-starter-template-about-us-content {
+  font-family: 'Libre Franklin' !important;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+  line-height: 30px !important;
+  text-align: left !important;
+}
+
+.responsive-starter-template-about-us-image {
+  max-width: 450px !important;
+  max-height: 670px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.responsive-starter-template-whyus-outer-container {
+  padding-top: 60px !important;
+  padding-bottom: 60px !important;
+  background: #D0A0FB33 !important;
+}
+
+.responsive-starter-template-whyus-image-passionate {
+  max-width: 80px !important;
+  max-height: 80px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.responsive-starter-template-whyus-image-profession {
+  max-width: 120px !important;
+  max-height: 80px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.responsive-starter-template-whyus-image-support {
+  max-width: 85px !important;
+  max-height: 80px !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.responsive-starter-template-whyus-title {
+  text-align: center !important;
+  margin-top: 16px !important;
+}
+
+.responsive-starter-template-whyus-content {
+  font-family: 'Libre Franklin' !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  line-height: 26px !important;
+  text-align: center !important;
+}
+
+.responsive-starter-template-testimonials-outer-container {
+  padding-top: 60px !important;
+  padding-bottom: 60px !important;
+  background-color: #ffffff !important;
+}
+
+.responsive-starter-template-testimonials-inner-container {
+  max-width: 1024px !important;
+  width: 100% !important;
+  margin: auto !important;
+}
+
+.responsive-starter-template-testimonials-content1 {
+  font-size: 24px !important;
+  line-height: 47px !important;
+  font-weight: 300 !important;
+  text-align: center !important;
+}
+
+.responsive-starter-template-testimonials-content2 {
+  font-size: 24px !important;
+  line-height: 47px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+.responsive-starter-template-contact-outer-container {
+  background: linear-gradient(60.83deg, #2D2C52 -26.89%, #7C29C4 73.99%, #FFFFFF 130.3%) !important;
+  padding-top: 104px !important;
+  padding-bottom: 104px !important;
+}
+
+.responsive-starter-template-contact-title {
+  text-align: center !important;
+}
+
+.responsive-starter-template-contact-inner-container {
+  margin-top: 50px !important;
+}
