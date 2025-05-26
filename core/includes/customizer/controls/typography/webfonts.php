@@ -188,7 +188,7 @@ function responsive_enqueue_google_font( $font ) {
  * Adds data to the $fonts array for a font to be rendered.
  */
 function responsive_render_google_fonts_url( $fonts ) {
-
+	$isGoogleFont = false; // Flag to check if the font is a Google Font.
 	// Return if disabled.
 	if ( true === get_theme_mod( 'responsive_disable_google_font', false ) ) {
 		return;
@@ -197,7 +197,13 @@ function responsive_render_google_fonts_url( $fonts ) {
 	// Main URL.
 	$url = 'https://fonts.googleapis.com/css?family=';
 	foreach ( $fonts as $font ) {
-		$url .= responsive_enqueue_google_font( $font ) . '%7C';
+		// Clean font name: remove quotes and fallback (after comma)
+		$clean_font = trim( preg_replace( "/['\"]/", '', explode(',', $font)[0] ) );
+		$google_fonts = responsive_get_google_fonts();
+		if ( isset($google_fonts) && array_key_exists( $clean_font, $google_fonts ) ) {
+			$isGoogleFont = true; // Change the value to true if any one font is a Google Font.
+		}
+		$url .= responsive_enqueue_google_font( $clean_font ) . '%7C';
 	}
 
 	// Subset.
@@ -215,7 +221,10 @@ function responsive_render_google_fonts_url( $fonts ) {
 	$subset = '&amp;subset=' . $subsets;
 	$url .= $subset;
 
-	// Enqueue style.
-	wp_enqueue_style( 'responsive-google-font', $url, false, false, 'all' );//phpcs:ignore
-
+	// Check if already enqueued, then dequeue.
+	if ( !$isGoogleFont ) {
+		wp_dequeue_style( 'responsive-google-font-css' );
+	} else {
+		wp_enqueue_style( 'responsive-google-font', $url, false, false, 'all' );//phpcs:ignore
+	}
 }
