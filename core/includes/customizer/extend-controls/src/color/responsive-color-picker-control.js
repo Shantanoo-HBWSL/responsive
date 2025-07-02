@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import { Component } from '@wordpress/element';
-import {Button, ColorPicker, ColorPalette } from '@wordpress/components';
+import { Button, ColorPicker, ColorPalette, GradientPicker, TabPanel } from '@wordpress/components';
 
 class ResponsiveColorPickerControl extends Component {
 
@@ -21,6 +21,8 @@ class ResponsiveColorPickerControl extends Component {
 			backgroundType: this.props.backgroundType,
 			inputattr: this.props.inputattr,
 			opacityZero: this.extractOpacity(this.props.color) === 0,
+			gradient: this.props.gradient,
+			isGradientEnabled: this.props.isGradientEnabled || false,
 		};
 	}
 
@@ -54,8 +56,8 @@ class ResponsiveColorPickerControl extends Component {
 			refresh,
 			modalCanClose,
 			isVisible,
+			gradient,
 		} = this.state
-
 
 		const toggleVisible = () => {
 			if ( refresh === true ) {
@@ -106,40 +108,97 @@ class ResponsiveColorPickerControl extends Component {
 			<>
 				
 				<div className="wp-picker-container">
-					
-					<Button className={ isVisible ? 'button wp-color-result wp-picker-open' : 'button wp-color-result ' } onClick={ () => { isVisible ? toggleClose() : toggleVisible() } }
-						aria-expanded='false' style={{backgroundColor:this.props.color}}
+					<Button className={isVisible ? 'button wp-color-result wp-picker-open' : 'button wp-color-result '}
+						onClick={() => { isVisible ? toggleClose() : toggleVisible() }}
+						aria-expanded='false'
+						style={{
+							background: (this.props.color?.startsWith('linear-gradient') || this.props.color?.startsWith('gradial-gradient') ) ? this.props.color : undefined,
+							backgroundColor: !this.props.color?.startsWith('linear-gradient') ? this.props.color : undefined
+						}}
 					>
 					</Button>
 					<div className="wp-picker-holder">
-						{ isVisible && (
-							<>	
-									{ refresh && (
-										<>
-											<ColorPicker
-												color={ this.props.color }
-												onChangeComplete={ ( color ) => this.onChangeComplete( color ) }
-											/>
-										</>
-									) }
-									{ ! refresh &&  (
-										<>
-											<ColorPicker
-												color={ this.props.color }
-												onChangeComplete={ ( color ) => this.onChangeComplete( color ) }
-											/>
+						{(isVisible && this.state.isGradientEnabled) ?
+							(
+								<>
+									<TabPanel
+										className="responsive-color-picker-tabs"
+										activeClass="is-active"
+										tabs={[
+											{
+												name: 'color',
+												title: __('Color', 'responsive'),
+												className: 'color-tab',
+											},
+											{
+												name: 'gradient',
+												title: __('Gradient', 'responsive'),
+												className: 'gradient-tab',
+											},
+										]}
+									>
+										{(tab) => (
+											<div className="responsive-color-picker-tab-content">
+												{tab.name === 'color' && (
+													<ColorPicker
+														color={this.props.color}
+														onChangeComplete={(color) => this.onChangeComplete(color)}
+													/>
+												)}
+												{tab.name === 'gradient' && (
+													<GradientPicker
+														value={this.state.gradient}
+														onChange={(currentGradient) => {
+															this.setState({ gradient: currentGradient });
+															this.onChangeComplete(currentGradient, 'gradient'); // <-- important
+														}}
+													/>
+												)}
+											</div>
+										)}
+									</TabPanel>
 
-										</>
-									) }
-								{ this.state.opacityZero && 
-									<div className='responsive-color-picker-zero-opac'><strong>{ __( 'Note: ', 'responsive' ) }</strong>{ __( 'Opacity is set to zero. Increase it to make the color visible.', 'responsive' ) }</div>
-								}
-								<button type="button" onClick = { () => { this.onColorClearClick(defaultValue) } } className="responsive-clear-btn-inside-picker components-button components-circular-option-picker__clear is-secondary is-small">{ __( 'Default', 'responsive' ) }</button>
-					
-								
-							</>
-								
-						) }
+									{this.state.opacityZero && (
+										<div className="responsive-color-picker-zero-opac">
+											<strong>{__('Note: ', 'responsive')}</strong>
+											{__('Opacity is set to zero. Increase it to make the color visible.', 'responsive')}
+										</div>
+									)}
+
+									<Button
+										type="button"
+										onClick={() => this.onColorClearClick(defaultValue)}
+										className="responsive-clear-btn-inside-picker components-button is-secondary is-small"
+									>
+										{__('Default', 'responsive')}
+									</Button>
+								</>
+							) : (isVisible && !this.state.isGradientEnabled) ? (
+								<>
+									<ColorPicker
+										color={this.props.color}
+										onChangeComplete={(color) => this.onChangeComplete(color)}
+									/>
+
+									{this.state.opacityZero && (
+										<div className="responsive-color-picker-zero-opac">
+											<strong>{__('Note: ', 'responsive')}</strong>
+											{__('Opacity is set to zero. Increase it to make the color visible.', 'responsive')}
+										</div>
+									)}
+
+									<Button
+										type="button"
+										onClick={() => this.onColorClearClick(defaultValue)}
+										className="responsive-clear-btn-inside-picker components-button is-secondary is-small"
+									>
+										{__('Default', 'responsive')}
+									</Button>
+								</>
+							) : (
+								<></>
+							)
+						}
 					</div>
 				</div>
 			</>
@@ -164,25 +223,23 @@ class ResponsiveColorPickerControl extends Component {
 
 		let newColor;
 
-		if ( color.rgb && color.rgb.a !== undefined ) {
-			if ( color.rgb.a === 0 ) {
-				// Show a notice when opacity is 0
+		if (typeof color === 'string') {
+			newColor = color;
+			this.setState({ opacityZero: false });
+		} else if (color.rgb && color.rgb.a !== undefined) {
+			if (color.rgb.a === 0) {
 				this.setState({ opacityZero: true });
 			} else {
 				this.setState({ opacityZero: false });
 			}
-	
-			if ( color.rgb.a !== 1 ) {
-				newColor = 'rgba(' +  color.rgb.r + ',' +  color.rgb.g + ',' +  color.rgb.b + ',' + color.rgb.a + ')';
-			} else {
-				newColor = color.hex;
-			}
-		} else {
-			this.setState({ opacityZero: false });
-			newColor = color.hex;
+
+			newColor = (color.rgb.a !== 1)
+				? `rgba(${color.rgb.r},${color.rgb.g},${color.rgb.b},${color.rgb.a})`
+				: color.hex;
 		}
-		this.setState( { backgroundType: 'color' } );
-		this.props.onChangeComplete( color, 'color' );
+
+		this.setState({ backgroundType: type });
+		this.props.onChangeComplete(newColor, type); // <--- important
 	}
 
 	onPaletteChangeComplete( color ) {

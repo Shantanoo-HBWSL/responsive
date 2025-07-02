@@ -5,11 +5,19 @@ import {useState} from 'react';
 
 const ColorComponent = props => {
 
-	let value = props.control.params.value;
+	// let value = props.control.params.value;
+	const {
+		label,
+        description,
+		is_hover_required,
+		value
+	} = props.control.params;
 
 	const [state, setState] = useState({
 		value: value,
 	});
+
+	console.log("ColorComponent state: ", state);
 
 	const updateValues = (value) => {
 		setState(prevState => ({
@@ -39,7 +47,13 @@ const ColorComponent = props => {
             updatedValue.normal = colorValue;
         } else if (type === 'hover') {
             updatedValue.hover = colorValue;
-        }
+        } else if (type === 'gradient') {
+			updatedValue.gradient = colorValue;
+		}
+		
+		console.log("ColorComponent updatedValue: ", updatedValue);
+		console.log("ColorComponent colorValue: ", colorValue);
+
 		if( props.control.params.is_hover_required ) {
 			updateValues(updatedValue);
 		} else {
@@ -49,11 +63,6 @@ const ColorComponent = props => {
 
 	let labelHtml = null;
     let htmlDescription = null;
-	const {
-		label,
-        description,
-		is_hover_required
-	} = props.control.params;
 
 	if (label) {
 		labelHtml = <span className="customize-control-title">{label}</span>;
@@ -74,10 +83,13 @@ const ColorComponent = props => {
 					/>
 				) }
 				{ ! is_hover_required && (
-					<ResponsiveColorPickerControl color={undefined !== state.value && state.value ? state.value : ''}
-						onChangeComplete={(color) => handleChangeComplete(color)}
+					<ResponsiveColorPickerControl 
+						color={undefined !== state.value && state.value ? state.value : ''}
+						onChangeComplete={(color, type) => handleChangeComplete(color, type)}
 						backgroundType={'color'}
 						inputattr={props.control.params}
+						gradient={"linear-gradient(135deg, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 255, 1) 100%)"}
+						isGradientEnabled={(label === "Site Background" || label === "Content Background") ? true : false}
 					/>
 				)}
 
