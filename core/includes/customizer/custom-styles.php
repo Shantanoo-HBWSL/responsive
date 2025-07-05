@@ -31,6 +31,7 @@ function responsive_get_color_palettes_schemes_as_customizer_choices() {
 	$responsive_color_schemes = $design_styles[ $customizer_color_schemes_design ]['color_schemes'][ $customizer_color_schemes_palette ];
 
 	set_theme_mod( 'background_color', ltrim( $responsive_color_schemes['alt_background'], '#' ) );
+	set_theme_mod( 'background_gradient_color', 'linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%)' );
 	set_theme_mod( 'responsive_alt_background_color', $responsive_color_schemes['alt_background'] );
 	set_theme_mod( 'responsive_box_background_color', $responsive_color_schemes['background'] );
 	set_theme_mod( 'responsive_link_color', $responsive_color_schemes['accent'] );
@@ -186,6 +187,8 @@ function responsive_customizer_styles() {
 	$alt_background_color = esc_html( get_theme_mod( 'responsive_alt_background_color', Responsive\Core\get_responsive_customizer_defaults( 'alt_background' ) ) );
 
 	$site_background_color = get_theme_mod( 'responsive_site_background_color' );
+	$site_background_gradient_color = get_theme_mod( 'responsive_site_background_gradient_color' );
+	$site_background_color_type = get_theme_mod( 'responsive_site_background_color_type', 'color' );
 
 	// Detect the operating system and set the typical scrollbar width.
 	$user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '';
@@ -712,11 +715,30 @@ function responsive_customizer_styles() {
 				background-attachment: scroll;
 			}";
 		}
-		if ( $site_background_color ) {
+
+		error_log("Site Background Color: {$site_background_color}");
+		error_log("Site Background Gradient Color: {$site_background_gradient_color}");
+		error_log("Site Background Color Type: {$site_background_color_type}");
+		if ( 'gradient' === $site_background_color_type && ! empty( $site_background_gradient_color ) ) {
+			// If gradient is active and has a value, use 'background'
 			$custom_css .= "body.custom-background {
-				background-color: $site_background_color;
+				background: " . esc_attr( $site_background_gradient_color ) . ";
+				/* Ensure background-color is reset or not present to avoid conflict */
+				background-color: ''; /* Explicitly reset */
+			}";
+		} elseif ( 'color' === $site_background_color_type && ! empty( $site_background_color ) ) {
+			// If solid color is active and has a value, use 'background-color'
+			$custom_css .= "body.custom-background {
+				/* Ensure background is reset or not present to avoid conflict */
+				background: ''; /* Explicitly reset */
+				background-color: " . esc_attr( $site_background_color ) . ";
 			}";
 		}
+		// if ( $site_background_color ) {
+		// 	$custom_css .= "body.custom-background {
+		// 		background-color: $site_background_color;
+		// 	}";
+		// }
 	}
 
 	// lifter settings

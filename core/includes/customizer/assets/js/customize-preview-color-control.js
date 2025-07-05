@@ -7,16 +7,79 @@
 // phpcs:ignoreFile
 ( function( $ ) {
     var api = wp.customize;
+    
+    function setBackground( type ) {
+        console.log("Type: ", type);
+		if ( type === 'gradient' ) {
+			api( 'responsive_site_background_gradient_color', function( value ) {
+                console.log("Value from gradient: ", value.get());
+				var gradient = value.get();
+				$('body').addClass( 'custom-background' ).css({
+					'background': gradient,
+					'background-color': ''
+				});
+			});
+		} else {
+			api( 'responsive_site_background_color', function( value ) {
+                console.log("Value from color: ", value.get());
+				var color = value.get();
+				$('body').addClass( 'custom-background' ).css({
+					'background': '',
+					'background-color': color
+				});
+			});
+		}
+	}
 
-    api( 'responsive_site_background_color', function( value ) {
-		value.bind( function( newval ) {
-			// if( api( 'responsive_site_background_image_toggle' ).get() ) {
-			// 	$('body.custom-background').css({'background-color': newval });
-			// }
-			$('body').addClass( 'custom-background' );
-			$('body.custom-background').css({'background-color': newval });
+	// On color type change
+	api( 'responsive_site_background_color_type', function( value ) {
+		value.bind( function( newType ) {
+			setBackground( newType );
 		} );
 	} );
+
+	// On solid color change
+	api( 'responsive_site_background_color', function( value ) {
+		value.bind( function( newColor ) {
+            console.log("newColor: ", newColor);
+			api( 'responsive_site_background_color_type', function( typeValue ) {
+                console.log("TypeValue from color: ", typeValue);
+				if ( typeValue.get() === 'color' ) {
+					setBackground( 'color' );
+				}
+			});
+		} );
+	} );
+
+	// On gradient change
+	api( 'responsive_site_background_gradient_color', function( value ) {
+		value.bind( function( newGradient ) {
+            console.log("newGradient: ", newGradient);
+			api( 'responsive_site_background_color_type', function( typeValue ) {
+                console.log("TypeValue from gradient: ", typeValue);
+				if ( typeValue.get() === 'gradient' ) {
+					setBackground( 'gradient' );
+				}
+			});
+		} );
+	} );
+
+	// Initial load
+	$(document).ready( function() {
+		api( 'responsive_site_background_color_type', function( value ) {
+			setBackground( value.get() );
+		});
+	} );
+
+    // api( 'responsive_site_background_color', function( value ) {
+	// 	value.bind( function( newval ) {
+	// 		// if( api( 'responsive_site_background_image_toggle' ).get() ) {
+	// 		// 	$('body.custom-background').css({'background-color': newval });
+	// 		// }
+	// 		$('body').addClass( 'custom-background' );
+	// 		$('body.custom-background').css({'background-color': newval });
+	// 	} );
+	// } );
 
     //Header section
     //Update header background color...

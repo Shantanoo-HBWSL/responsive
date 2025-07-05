@@ -103,7 +103,23 @@ if ( ! class_exists( 'Responsive_Site_Colors_Customizer' ) ) :
 
 			// Site Background Color.
 			$site_background_color_label = __( 'Site Background', 'responsive' );
-			responsive_color_control( $wp_customize, 'site_background', $site_background_color_label, 'responsive_colors', 90, Responsive\Core\get_responsive_customizer_defaults( 'background_color' ) );
+			responsive_color_control( 
+				$wp_customize, 
+				'site_background',
+				$site_background_color_label,
+				'responsive_colors',
+				90,
+				Responsive\Core\get_responsive_customizer_defaults( 'background_color' ),
+				null,
+				'',
+				false,
+				null,
+				null,
+				true,
+				'site_background_gradient',
+				Responsive\Core\get_responsive_customizer_defaults( 'background_gradient_color' ),
+				'color',
+			);
 
 			// Box Background Color.
 			$box_background_color_label = __( 'Content Background', 'responsive' );
