@@ -48,8 +48,6 @@ if ( ! class_exists( 'Responsive_Header_Search_Customizer' ) ) :
 				$general_tab_ids_prefix . 'responsive_header_search_separator3',
 				$general_tab_ids_prefix . 'responsive_header_search_enable_live_search',
 				$general_tab_ids_prefix . 'responsive_header_search_separator15',
-				$general_tab_ids_prefix . 'responsive_header_search_live_search_post_type',
-				$general_tab_ids_prefix . 'responsive_header_search_separator16'
 			);
 			$design_tab_ids_prefix = 'customize-control-';
 			$design_tab_ids        = array(
@@ -78,6 +76,10 @@ if ( ! class_exists( 'Responsive_Header_Search_Customizer' ) ) :
 				$design_tab_ids_prefix . 'responsive_border_header_search_border_radius',
 				$design_tab_ids_prefix . 'responsive_header_search_separator14',
 			);
+			if(get_theme_mod( 'responsive_header_search_enable_live_search', false )) {
+				$general_tab_ids[] = $general_tab_ids_prefix . 'responsive_header_search_live_search_post_type';
+				$general_tab_ids[] = $general_tab_ids_prefix . 'responsive_header_search_separator16';
+			}
 		
 			responsive_tabs_button_control( $wp_customize, 'header_search_tabs', $tabs_label, 'responsive_header_search', 1, '', 'responsive_header_search_general_tab', 'responsive_header_search_design_tab', $general_tab_ids, $design_tab_ids, null );
 
@@ -183,7 +185,7 @@ if ( ! class_exists( 'Responsive_Header_Search_Customizer' ) ) :
 				null 
 			);
 
-			responsive_horizontal_separator_control($wp_customize, 'header_search_separator16', 1, 'responsive_header_search', 46, 1 );
+			responsive_horizontal_separator_control($wp_customize, 'header_search_separator16', 1, 'responsive_header_search', 46, 1, 'responsive_header_search_live_search_enabled' );
 
 			// Search Label Visibility.
 			$live_search_post_type   = esc_html__( 'Search Within Post Types', 'responsive' );
@@ -191,7 +193,7 @@ if ( ! class_exists( 'Responsive_Header_Search_Customizer' ) ) :
 				'pages'   => esc_html__( 'Pages', 'responsive' ),
 				'posts'    => esc_html__( 'Posts', 'responsive' ),
 			);
-			responsive_multi_select_button_control( $wp_customize, 'header_search_live_search_post_type', $live_search_post_type, 'responsive_header_search', 47, $live_search_post_type_choices, array( 'pages', 'posts' ) , null );
+			responsive_multi_select_button_control( $wp_customize, 'header_search_live_search_post_type', $live_search_post_type, 'responsive_header_search', 47, $live_search_post_type_choices, array( 'pages', 'posts' ) , 'responsive_header_search_live_search_enabled' );
 
 			// Search Style.
 			$search_style_label   = esc_html__( 'Search Style', 'responsive' );

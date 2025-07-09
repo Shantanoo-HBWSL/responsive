@@ -3395,3 +3395,14 @@ if( ! function_exists( 'responsive_site_background_image_present' ) ) :
 		return get_theme_mod( 'responsive_site_background_image_toggle' ) && esc_url( get_theme_mod( 'responsive_site_background_image' ) ) ? true : false;
 	}
 endif;
+
+if( ! function_exists( 'responsive_header_search_live_search_enabled' ) ) :
+	/**
+ * Determines whether live search in search element is enabled or not.
+ *
+ * @return bool true if live search in search element is enabled, false otherwise.
+ */
+function responsive_header_search_live_search_enabled() {
+	return get_theme_mod( 'responsive_header_search_enable_live_search' ) ? true : false;
+}
+endif;
